@@ -58,6 +58,29 @@ output "kubeconfig" {
 }
 ```
 
+## In-place upgrades
+
+`talos_version` sets the version of the running cluster. Changing it does not
+recreate the VMs: the module shells out to `talosctl upgrade` per node (workers
+first, then control planes), which reboots each node into the new version with
+disks and node identity intact.
+
+This is off by default so that bumping the module version never touches a
+running cluster on its own. Opt in with:
+
+```terraform
+talos_upgrade_enabled = true
+```
+
+Requirements and caveats:
+
+- `talosctl` must be on the machine running terraform, and it must be able to
+  reach the node IPs.
+- With the flag off, changing `talos_version` only updates the machine config
+  and the image new nodes install from -- running nodes stay where they are.
+- `talos_image_version` pins the boot ISO separately; it defaults to
+  `talos_version`.
+
 Check out our [blog post](https://bbtechsystems.com/blog/k8s-with-pxe-tf/) for more details on using this module.
 
 Copyright (c) 2024 BB Tech Systems LLC

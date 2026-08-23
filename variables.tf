@@ -183,7 +183,7 @@ variable "talos_image_version" {
 }
 
 variable "talos_upgrade_enabled" {
-  description = "Let terraform run `talosctl upgrade` on running nodes when talos_version changes. Requires talosctl on the machine running terraform."
+  description = "Let terraform run `talosctl upgrade` on running nodes when talos_version changes. Requires talosctl on the machine running terraform. Off by default so bumping the module never touches a running cluster unasked."
   type        = bool
-  default     = true
+  default     = false
 }
