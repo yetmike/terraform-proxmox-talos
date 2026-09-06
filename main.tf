@@ -62,6 +62,7 @@ resource "proxmox_virtual_environment_vm" "talos_control_vm" {
     vlan_id     = var.proxmox_network_vlan_id
     bridge      = var.proxmox_network_bridge
     mac_address = lookup(var.control_plane_mac_addresses, each.key, null)
+    queues      = var.proxmox_network_queues
   }
   operating_system {
     type = "l26"
@@ -113,6 +114,7 @@ resource "proxmox_virtual_environment_vm" "talos_worker_vm" {
     vlan_id     = var.proxmox_network_vlan_id
     bridge      = var.proxmox_network_bridge
     mac_address = lookup(var.worker_mac_addresses, each.key, null)
+    queues      = var.proxmox_network_queues
   }
   dynamic "disk" {
     for_each = lookup(var.worker_extra_disks, each.key, [])
