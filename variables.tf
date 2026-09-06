@@ -65,6 +65,15 @@ variable "proxmox_network_bridge" {
   default     = "vmbr0"
 }
 
+variable "proxmox_network_queues" {
+  # A single-queue virtio NIC pins every packet's softirq to cpu0; at ~40k
+  # small requests/s that one core saturates while the rest idle. Setting
+  # queues = cores spreads RX/TX across all vCPUs. null keeps Proxmox's default.
+  description = "virtio-net multiqueue count for the VM NIC (typically equal to cores). null = Proxmox default (1)."
+  type        = number
+  default     = null
+}
+
 variable "control_plane_mac_addresses" {
     description = "Map of control plane node names to MAC addresses for static IP assignment via DHCP"
     type        = map(string)
