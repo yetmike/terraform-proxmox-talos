@@ -75,17 +75,17 @@ variable "proxmox_network_queues" {
 }
 
 variable "control_plane_mac_addresses" {
-    description = "Map of control plane node names to MAC addresses for static IP assignment via DHCP"
-    type        = map(string)
-    default     = {}
-    nullable    = false
+  description = "Map of control plane node names to MAC addresses for static IP assignment via DHCP"
+  type        = map(string)
+  default     = {}
+  nullable    = false
 }
 
 variable "worker_mac_addresses" {
-    description = "Map of worker node names to MAC addresses for static IP assignment via DHCP"
-    type        = map(string)
-    default     = {}
-    nullable    = false
+  description = "Map of worker node names to MAC addresses for static IP assignment via DHCP"
+  type        = map(string)
+  default     = {}
+  nullable    = false
 }
 
 variable "talos_cluster_name" {
@@ -94,15 +94,15 @@ variable "talos_cluster_name" {
 }
 
 variable "proxmox_control_pool_id" {
-    description = "Proxmox control VM pool ID"
-    type = string
-    default = null
+  description = "Proxmox control VM pool ID"
+  type        = string
+  default     = null
 }
 
 variable "proxmox_worker_pool_id" {
-    description = "Proxmox worker VM pool ID"
-    type = string
-    default = null
+  description = "Proxmox worker VM pool ID"
+  type        = string
+  default     = null
 }
 
 variable "talos_schematic_id" {
